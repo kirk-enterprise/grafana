@@ -20,7 +20,7 @@ function (_, moment) {
 
   IndexPattern.prototype.getIndexForToday = function() {
     if (this.interval) {
-      return moment.utc().format(this.pattern);
+      return moment.utc().utcOffset(+480).format(this.pattern);
     } else {
       return this.pattern;
     }
@@ -32,8 +32,8 @@ function (_, moment) {
     }
 
     var intervalInfo = IndexPattern.intervalMap[this.interval];
-    var start = moment(from).utc().startOf(intervalInfo.startOf);
-    var end = moment(to).utc().startOf(intervalInfo.startOf).valueOf();
+    var start = moment(from).utc().utcOffset(+480).startOf(intervalInfo.startOf);
+    var end = moment(to).utc().utcOffset(+480).startOf(intervalInfo.startOf).valueOf();
     var indexList = [];
 
     while (start <= end) {
