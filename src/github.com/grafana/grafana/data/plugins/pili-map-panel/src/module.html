@@ -1,7 +1,7 @@
 <div class="graph-wrapper" ng-class="{'graph-legend-rightside': ctrl.panel.legendType == 'Right side'}">
 	<div class="graph-canvas-wrapper" style="height: 480px; display: flex; flex-direction: row; flex-wrap: nowrap; align-items: stretch;">
-        <div id="map-dom" style="flex-basis: 640px; flex-grow: 1;"></div>
-        <div id="top-dom" style="flex-basis: 320px; flex-grow: 0;"></div>
+        <div id="{{ctrl.panel.mapDomId}}" style="flex-basis: 640px; flex-grow: 1;"></div>
+        <div id="{{ctrl.panel.topDomId}}" style="flex-basis: 320px; flex-grow: 0;"></div>
     </div>
 	<div class="graph-legend-wrapper" ng-if="ctrl.panel.legend.show"></div>
 </div>

@@ -56,8 +56,8 @@
     "zone.js": "^0.7.2"
   },
   "engines": {
-    "node": "4.x",
-    "npm": "2.14.x"
+    "node": ">=4.x",
+    "npm": ">=2.14.x"
   },
   "scripts": {
     "build": "grunt && pili_scripts/copy_public_assets",
