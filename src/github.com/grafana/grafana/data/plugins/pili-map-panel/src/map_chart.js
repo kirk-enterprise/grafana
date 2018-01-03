@@ -57,7 +57,8 @@ class MapChart {
       this._legend.data.push(serieName);
       this._clearSerieData(serie.data);
     }
-    const cell = serie.data.find(cell => cell.name === province);
+    const cell = serie.data.find(cell => cell.name === province
+  );
     if (cell) {
       cell.value = value;
     }
@@ -109,11 +110,13 @@ class MapChart {
   }
 
   updateDataList(option, dataList) {
-    console.log("option---------", option)
-    this._series.forEach(serie => this._clearSerieData(serie.data));
+    this._series.forEach(serie => this._clearSerieData(serie.data)
+  );
     let maxMapValue = 0;
     dataList.forEach(({targetObj, value}) => {
-      if ((targetObj.province && provinces.indexOf(targetObj.province) == -1) || (targetObj.Province && provinces.indexOf(targetObj.Province) == -1)) {
+      if((targetObj.province && provinces.indexOf(targetObj.province) == -1) || (targetObj.Province && provinces.indexOf(targetObj.Province) == -1)
+  )
+    {
       return;
     }
     let targetKeys = [];
@@ -121,13 +124,16 @@ class MapChart {
       targetKeys.push(key);
     }
     if (targetObj.province) {
-      targetKeys = targetKeys.sort().filter(key => key !== 'province');
+      targetKeys = targetKeys.sort().filter(key => key !== 'province'
+    );
     }
     if (targetObj.Province) {
-      targetKeys = targetKeys.sort().filter(key => key !== 'Province');
+      targetKeys = targetKeys.sort().filter(key => key !== 'Province'
+    );
     }
-    const targetValues = targetKeys.map(key => targetObj[key]);
-    const serieName = targetValues.length >0 ? targetValues.join('-')
+    const targetValues = targetKeys.map(key => targetObj[key]
+  );
+    const serieName = targetValues.length > 0 ? targetValues.join('-')
       : 'main';
 
     const province = targetObj.province ? targetObj.province : targetObj.Province;
@@ -143,7 +149,6 @@ class MapChart {
     const max = maxMapValue === 0 ? this._visualMap.max : maxMapValue;
     this._visualMap.max = max;
     option.visualMap = this._visualMap
-    console.log("option", option)
     this._myChart.setOption(option);
   }
 }
