@@ -4,8 +4,6 @@ import _ from 'lodash';
 
 import MapChart from './map_chart';
 import TopChart from './top_chart';
-import echarts from 'app/plugins/pili/echarts';
-
 
 export class PluginCtrl extends MetricsPanelCtrl {
 
