@@ -8,7 +8,8 @@ export class TreeMapCtrl extends MetricsPanelCtrl {
     constructor($scope, $injector, $rootScope) {
         super($scope, $injector);
         this.$rootScope = $rootScope;
-        let panelDefaults = {
+        const treeMapDomId = "tree-map-dom-" + new Date().getTime();
+        const panelDefaults = {
             textFontSetting: {
                 fontSize: 10,
                 color: '(255,255,255)',
@@ -20,6 +21,7 @@ export class TreeMapCtrl extends MetricsPanelCtrl {
 
             },
             dataList: null,
+            treeMapId: treeMapDomId,
 
         };
 
@@ -47,7 +49,7 @@ export class TreeMapCtrl extends MetricsPanelCtrl {
     onDataReceived(dataList) {
         if (!this.didRenderThisComponent) {
             this._initSeries();
-            this._treeMapChart = echarts.init(document.getElementById('main'));
+            this._treeMapChart = echarts.init(document.getElementById(this.panel.treeMapId));
             this._option = {
                 tooltip : {
                     trigger: 'item',
