@@ -4,6 +4,8 @@ import _ from 'lodash';
 
 import MapChart from './map_chart';
 import TopChart from './top_chart';
+import echarts from 'app/plugins/pili/echarts';
+
 
 export class PluginCtrl extends MetricsPanelCtrl {
 
@@ -11,7 +13,11 @@ export class PluginCtrl extends MetricsPanelCtrl {
         super($scope, $injector);
         this.$rootScope = $rootScope;
 
-        var panelDefaults = {
+        const mapDomId = "map-dom-" + new Date().getTime();
+        const topDomId = "top-dom-" + new Date().getTime();
+
+
+      var panelDefaults = {
             pieType: 'pie',
             legend: {
                 show: true, // disable/enable legend
@@ -30,6 +36,8 @@ export class PluginCtrl extends MetricsPanelCtrl {
             valueName: 'current',
             strokeWidth: 1,
             fontSize: '80%',
+            mapDomId: mapDomId,
+            topDomId: topDomId,
             combine: {
                 threshold: 0.0,
                 label: 'Others'
@@ -45,8 +53,8 @@ export class PluginCtrl extends MetricsPanelCtrl {
         this.events.on('data-error', this.onDataError.bind(this));
         // this.events.on('init-edit-mode', this.onInitEditMode.bind(this));
 
-        this._mapChart = new MapChart('map-dom');
-        this._topChart = new TopChart('top-dom');
+        this._mapChart = new MapChart(this.panel.mapDomId);
+        this._topChart = new TopChart(this.panel.topDomId);
         this._didRenderThisComponent = false;
         this.render();
     }
